@@ -4,6 +4,7 @@
 #include "LevelMap.h"
 #include "VirtualCamera.h"
 #include <cmath>
+#include <ctime>
 
 #define GLFW_DLL
 #include <GLFW/glfw3.h>

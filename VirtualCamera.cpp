@@ -12,7 +12,7 @@ VirtualCamera::VirtualCamera(const std::string &path, int screen_width, int scre
     for (auto &p : dir) {
         if (p.exists()) {
             //std::cout << p.path() << std::endl;
-            levelList.emplace_back(p.path());
+            levelList.emplace_back(p.path().generic_string());
         }
     }
     if (levelList.size() >= 1) {

@@ -2,6 +2,8 @@
 #include "math.h"
 #include <iostream>
 
+extern volatile float deltaTime;
+
 bool Player::Moved() const
 {
   if(coords.x == old_coords.x && coords.y == old_coords.y)
@@ -12,7 +14,7 @@ bool Player::Moved() const
 
 void Player::ProcessInput(MovementDir dir, double angle_coef, LevelMap &level)
 {
-  int move_dist = ceil(move_speed * angle_coef);
+  double move_dist = 60 * move_speed * angle_coef * deltaTime;
   Point tmp_coords = coords;
   switch(dir)
   {

@@ -13,8 +13,8 @@ extern "C" {
 
 struct Point
 {
-  int x;
-  int y;
+  double x;
+  double y;
   Point(int x, int y) : x(x), y(y) {}
   Point(MapPoint pos) : x(pos.x * 2 *tileSize + tileSize), y(pos.y*2*tileSize + tileSize) {}
 };
@@ -49,7 +49,7 @@ struct Player
 private:
   Point coords {10, 10};
   Point old_coords {10, 10};
-  int move_speed = 4;
+  double move_speed = 4;
   Animation fox;
   double lastMoveTime = 0;
   bool dead = 0;
