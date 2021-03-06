@@ -77,11 +77,30 @@ void VirtualCamera::update() {
 void VirtualCamera::ProcessInput(MovementDir dir, double angle_coef) {
     if (active) {
         player.ProcessInput(dir, angle_coef, *level);
+    } else {
+        if (!levelChanged && dir == MovementDir::JUMP) {
+            setLevel(0);
+            player.Arise();
+            endScreen.reset();
+            levelChanged = 2;
+            transitionStart = glfwGetTime() - 2;
+        }
     }
 }
 
 void VirtualCamera::nextLevel() {
     level++;
+    levelBuffer = Image(level->Width()*tileSize*2, (level->Height()+1)*tileSize*2, channels),
+    player.SetPos(level->getStartPos()),
+    level->draw(levelBuffer);
+}
+
+void VirtualCamera::setLevel(int n) {
+    if (n < 0 || n >= levelList.size()) {
+        std::cout << "Incorrect level requested: " << n << std::endl;
+        return;
+    }
+    level = levelList.begin() + n;
     levelBuffer = Image(level->Width()*tileSize*2, (level->Height()+1)*tileSize*2, channels),
     player.SetPos(level->getStartPos()),
     level->draw(levelBuffer);

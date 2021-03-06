@@ -40,6 +40,7 @@ struct Player
   void ProcessInput(MovementDir dir, double angle_coef, LevelMap &level);
   void Draw(Image &screen);
   void Die() { dead = 1; fox.setType(AnimType::DIE);}
+  void Arise() {dead = 0; fox.setType(AnimType::IDLE); fox.start();}
   void Win() { fox.stop();}
   bool isJumping() const {return inAir;}
   Point Pos() const { return coords; }
@@ -48,7 +49,6 @@ struct Player
 private:
   Point coords {10, 10};
   Point old_coords {10, 10};
-  Pixel color {.r = 255, .g = 255, .b = 0, .a = 255};
   int move_speed = 4;
   Animation fox;
   double lastMoveTime = 0;

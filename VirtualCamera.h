@@ -15,6 +15,7 @@ struct VirtualCamera
     void update();
     void ProcessInput(MovementDir dir, double angle_coef);
     void nextLevel();
+    void setLevel(int n);
     void hide(Image &screen);
     Image& screen() { return screenBuffer; }
 

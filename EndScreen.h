@@ -15,6 +15,7 @@ struct EndScreen {
     bool timer_active() {
         return time_started != -1 && (glfwGetTime() - time_started) < 4;
     }
+    void reset() { time_started = -1;}
 
 private:
     Image GameOver;
